@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{$title or "MYC Console"}}</title>
+    <title>{{$title or "Somaproc"}}</title>
 
     <link rel="shortcut icon" type="image/png" href="{{asset('admin/images/favicon.png')}}"/>
     <!-- Bootstrap -->
@@ -42,7 +42,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>MYC Console</span></a>
+                        <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>SOMAPROC</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -64,160 +64,24 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                           <h3> <u>Roles :</u> </h3>
-                           <ul >
-
-                            @foreach(Auth::user()->roles as $r)
-                            <li> <h3>{{$r->name}}</h3></li>
-                            @endforeach
-                            </ul>
+                        
 
                             <ul class="nav side-menu">
                                 <li><a hef="{{url('/')}}"><i class="fa fa-home"></i> Home </a></li>
                               
-                                  @role('Master_admin')
-                                    <li><a><i class="fa fa-edit"></i> Console Users <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('cons_users.index')}}">Cons_Users list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                 <li><a><i class="fa fa-edit"></i> Accounts <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('accounts.index')}}">Accounts list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                     <li><a><i class="fa fa-edit"></i> Permission Categories <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('permission_categories.index')}}">Permission Categories list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                  <li><a><i class="fa fa-edit"></i> Group Permissions <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('group_permissions.index')}}">Group Permissions list</a></li>
-
-
-                                    </ul>
-                                </li>
-
-                                      <li><a><i class="fa fa-edit"></i> Permissions <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('permissions.index')}}">Permissions list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                     <li><a><i class="fa fa-edit"></i> Industries <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('industries.index')}}">Industries list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                 <li><a><i class="fa fa-edit"></i> Skills <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('skills.index')}}">Skills list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                   <li><a><i class="fa fa-edit"></i> Languages <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('languages.index')}}">Languages list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                     <li><a><i class="fa fa-edit"></i> Job Roles <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('job_roles.index')}}">Job Roles list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                      <li><a><i class="fa fa-edit"></i> Levels <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('levels.index')}}">Levels list</a></li>
-                                          <li><a href="{{route('degree_levels.index')}}">Degree Levels list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                 <li><a><i class="fa fa-edit"></i> Countries <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        
-                                        <li><a href="{{route('countries.index')}}">Countries list</a></li>
-
-
-                                    </ul>
-                                </li>
-                                    <li><a><i class="fa fa-edit"></i> Content <span class="fa fa-chevron-down"></span></a>
-										<ul class="nav child_menu">		
-											<li><a href="{{url('/menu/list')}}">Menus list</a></li>
-											<li><a href="{{url('/module/list')}}">Modules list</a></li>
-											<li><a href="{{url('/package/list')}}">Packages list</a></li>
-											<li><a href="{{url('/tab/list')}}">Tabs list</a></li>
-											<li><a href="{{url('/module/tab/list')}}">Module Tab list</a></li>
-											<li><a href="{{url('/module/menu/list')}}">Module Menu list</a></li>
-											<li><a href="{{url('/package_modules/list')}}">Package's Modules</a></li>
-										</ul>
-									</li>
-                                    <li><a><i class="fa fa-edit"></i> Insurances <span class="fa fa-chevron-down"></span></a>
-										<ul class="nav child_menu">		
-											<li><a href="{{url('/list/business_insurance')}}">Business Insurance Types</a></li>
-											<li><a href="{{url('/list/user_insurance')}}">User Insurance Types</a></li>
-											<li><a href="{{url('/list/vehicle_insurance')}}">Vehicle Insurance Types</a></li>
-										</ul>
-									</li>
-                                    <li><a><i class="fa fa-edit"></i> Vehicle <span class="fa fa-chevron-down"></span></a>
-										<ul class="nav child_menu">		
-											<li><a href="{{url('/list/vehicle_body')}}">Vehicle Bodies</a></li>
-											<li><a href="{{url('/list/vehicle_make')}}">Vehicle Makes</a></li>
-											<li><a href="{{url('/vehicle_model/list')}}">Vehicle Models</a></li>
-										</ul>
-									</li>
-                                    <li><a><i class="fa fa-edit"></i> Licence <span class="fa fa-chevron-down"></span></a>
-										<ul class="nav child_menu">		
-											<li><a href="{{url('/list/licence_type')}}">Licence Types</a></li>
-										</ul>
-									</li>
-
-
-                                @endrole
-                                     @role('Translator_team')
+                                 
+                                     
                                               <li><a><i class="fa fa-edit"></i> Language <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">     
-                                            <li><a href="{{url('/file_list/en')}}">English</a></li>
-                                            <li><a href="{{url('/file_list/es')}}">Spanish</a></li>
-                                            <li><a href="{{url('/file_list/fr')}}">French</a></li>
+                                            <li><a href="}">English</a></li>
+                                            <li><a href="">Spanish</a></li>
+                                            <li><a href="">French</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-edit"></i> Validation translate <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                        <li><a href="{{url('/tagvalidation')}}">Tags Validation</a></li>     
-                                            <li><a href="{{url('/validation')}}">Update Validation</a></li>
-                                            
-                                            
-                                        </ul>
-                                    </li>
+                                  
 
 
-                                     @endrole
+                                   
                                
                                       
                                 
