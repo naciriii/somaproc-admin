@@ -53,7 +53,7 @@
                             <img src="{{asset('admin/images/img.jpg')}}" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>Welcome,</span>
+                            <span>Bienvenu,</span>
                             <h2>{{ Auth::user()->name }}</h2>
                         </div>
                     </div>
@@ -67,17 +67,26 @@
                         
 
                             <ul class="nav side-menu">
-                                <li><a hef="{{url('/')}}"><i class="fa fa-home"></i> Home </a></li>
+                                <li><a hef="{{url('/')}}"><i class="fa fa-home"></i> Acceuil </a></li>
+                                @if(Auth::user()->super==1)
+                                          <li><a><i class="fa fa-edit"></i> Admins <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">     
+                                            <li><a href="{{route('admins.index')}}">liste</a></li>
+                                            
+                                        </ul>
+                                    </li>
+
+                                @endif
+                                             <li><a><i class="fa fa-edit"></i> Produits <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">     
+                                            <li><a href="{{route('products.index')}}">liste</a></li>
+                                            
+                                        </ul>
+                                    </li>
                               
                                  
                                      
-                                              <li><a><i class="fa fa-edit"></i> Language <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">     
-                                            <li><a href="}">English</a></li>
-                                            <li><a href="">Spanish</a></li>
-                                            <li><a href="">French</a></li>
-                                        </ul>
-                                    </li>
+                             
                                   
 
 
@@ -125,7 +134,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li><a href="#"> Profile</a></li>
-                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out pull-right"></i> Deconnecter</a></li>
                                 </ul>
                             </li>
 
