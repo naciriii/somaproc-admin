@@ -66,14 +66,8 @@
                         <div class="menu_section">
                         
                             <ul class="nav side-menu">
-                                <li><a hef="{{url('/')}}"><i class="fa fa-home"></i> Home </a></li>
-                                <li><a><i class="fa fa-edit"></i> Language <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">     
-                                            <li><a href="">English</a></li>
-                                            <li><a href="">Spanish</a></li>
-                                            <li><a href="">French</a></li>
-                                        </ul>
-                                </li>
+                              
+                               
                              
                                 <li><a hef="{{url('/')}}"><i class="fa fa-home"></i> Acceuil </a></li>
                                 @if(Auth::user()->super==1)
