@@ -7,15 +7,15 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Create Console User <a href="{{route('console_users.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
+                    <h2>{{$title}} <a href="{{route('admins.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Retour </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <br />
-                    <form method="post" action="{{ route('console_users.store') }}" data-parsley-validate class="form-horizontal form-label-left">
+                    <form method="post" action="{{ route('admins.store') }}" data-parsley-validate class="form-horizontal form-label-left">
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Console User email<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" value="{{ Request::old('email') ?: '' }}" id="email" name="email" class="form-control col-md-7 col-xs-12">
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Console User name <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" value="{{ Request::old('name') ?: '' }}" id="name" name="name" class="form-control col-md-7 col-xs-12">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Console User Password <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="password" value="{{ Request::old('password') ?: '' }}" id="password" name="password" class="form-control col-md-7 col-xs-12">
@@ -45,22 +45,26 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Console User Role <span class="required">*</span>
+                           <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation">Password_confirmation <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name='role' value="{{ Request::old('role') ?: '' }}" id="role" class="form-control col-md-7 col-xs-12">
-                                <option value=''> Choose</option>
-                                @foreach($roles as $r)
-                                <option value="{{$r->id}}">
-                                {{$r->name}}</option>
-                                @endforeach
-                                </select>
-                                @if ($errors->has('role'))
-                                <span class="help-block">{{ $errors->first('role') }}</span>
+                                <input type="password" value="{{ Request::old('password_confirmation') ?: '' }}" id="password_confirmation" name="password_confirmation" class="form-control col-md-7 col-xs-12">
+                                @if ($errors->has('password_confirmation'))
+                                <span class="help-block">{{ $errors->first('password_confirmation') }}</span>
                                 @endif
                             </div>
                         </div>
+                                                   <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label class="control-label">
+                                        <input type="checkbox" value="1" name="super"> <b>Super</b>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                 
 
                         
 
@@ -73,7 +77,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                <button type="submit" class="btn btn-success">Create Console User</button>
+                                <button type="submit" class="btn btn-success">Confirmer</button>
                             </div>
                         </div>
                     </form>

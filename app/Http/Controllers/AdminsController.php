@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\User;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
 {
-    public function __construct() {
+   public function __construct() {
         $this->middleware('auth');
         $this->middleware('super_user');
+      
     }
     /**
      * Display a listing of the resource.
@@ -20,6 +24,12 @@ class AdminsController extends Controller
     public function index()
     {
         //
+        $admins=User::where('email','<>',Auth::user()->email)->get();
+            $params=[
+        'title'=>'Liste admins',
+        "admins"=>$admins];
+
+        return view('admin.admins.admins_list')->with($params);
     }
 
     /**
@@ -30,7 +40,13 @@ class AdminsController extends Controller
     public function create()
     {
         //
+         $params=['title'=>'Creation Admin',
+
+        ];
+
+        return view('admin.admins.admins_create')->with($params);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -41,6 +57,19 @@ class AdminsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+               'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        $user=new User;
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=bcrypt($request->password);
+        $user->super=$request->super;
+
+        $user->save();
+          return redirect()->route('admins.index')->with('success', "Admin  '<strong>$user->name</strong>' a été crée.");
     }
 
     /**
@@ -49,9 +78,26 @@ class AdminsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+ public function show($id)
     {
-        //
+         try
+        {
+            $user = User::findOrFail($id);
+
+            $params = [
+                'title' => 'Supprimer Admin',
+                'admin' => $user,
+            ];
+
+            return view('admin.admins.admins_delete')->with($params);
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 
     /**
@@ -62,7 +108,27 @@ class AdminsController extends Controller
      */
     public function edit($id)
     {
-        //
+        try
+        {
+         
+            $user = User::findOrFail($id);
+
+            $params = [
+                'title' => 'Modifier admin',
+             
+                'admin' => $user
+                
+            ];
+
+            return view('admin.admins.admins_edit')->with($params);
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 
     /**
@@ -75,6 +141,49 @@ class AdminsController extends Controller
     public function update(Request $request, $id)
     {
         //
+         try
+        {
+               $this->validate($request, [
+         'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,'.$id,
+            'password' => 'required|min:6',
+
+          
+          
+           
+          
+        ]);
+
+            $user = User::findOrFail($id);
+
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+              if (Hash::needsRehash($request->password)){
+                $user->password = bcrypt($request->input('password'));
+
+            }
+            $user->super=$request->super;
+        
+               
+            
+            
+        
+            
+            
+        
+            
+
+            $user->save();
+
+            return redirect()->route('admins.index')->with('success', " Admin <strong>$user->name</strong> a été mis à jour.");
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 
     /**
@@ -86,5 +195,21 @@ class AdminsController extends Controller
     public function destroy($id)
     {
         //
+        try
+        {
+            $user = User::find($id);
+           
+
+            $user->delete();
+
+            return redirect()->route('admins.index')->with('success', "Admin <strong>$user->name</strong> a été supprimé.");
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
-}
+     }
