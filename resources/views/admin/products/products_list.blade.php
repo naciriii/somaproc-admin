@@ -18,7 +18,8 @@
                                 <th>Nom</th>
                                 <th>Photo</th>
                                 
-                                <th>Price</th>
+                                <th>Prix Min</th>
+                                <th>Prix Max</th>
                                  <th>Categorie</th>
                                  <th>Langue</th>
                             
@@ -30,7 +31,8 @@
                               <th>Nom</th>
                                 <th>Photo</th>
                                 
-                                <th>Price</th>
+                                <th>Prix Min</th>
+                                <th>Prix Max</th>
                                  <th>Categorie</th>
                                  <th>Langue</th>
                             
@@ -43,7 +45,9 @@
                             <tr>
                                 <td>{{$row->name}}</td>
                                 <td><img src='{{asset($row->photo)}}'  style="height: 60px;" class='img-responsive'></td>
-                                <td>{{number_format($row->price,2)}}</td>
+                                <td>{{number_format($row->min_price,2)}}</td>
+                                <td>{{number_format($row->max_price,2)}}</td>
+
                                 <td>{{config('categories')[$row->category_id]}}</td>
                                 
                                 <td>{{config('languages')[$row->language_id]}}</td>

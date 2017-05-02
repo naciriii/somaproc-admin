@@ -37,13 +37,23 @@
                           
                         </div>
 
-                        <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Prix
+                        <div class="form-group{{ $errors->has('min_price') ? ' has-error' : '' }}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="min_price">Prix Min
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text"  id="price" name="price" class="form-control col-md-7 col-xs-12">
-                                @if ($errors->has('price'))
-                                <span class="help-block">{{ $errors->first('price') }}</span>
+                                <input type="text"  id="min_price" name="min_price" class="form-control col-md-7 col-xs-12">
+                                @if ($errors->has('min_price'))
+                                <span class="help-block">{{ $errors->first('min_price') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                           <div class="form-group{{ $errors->has('max_price') ? ' has-error' : '' }}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="max_price">Prix Max
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text"  id="max_price" name="max_price" class="form-control col-md-7 col-xs-12">
+                                @if ($errors->has('max_price'))
+                                <span class="help-block">{{ $errors->first('max_price') }}</span>
                                 @endif
                             </div>
                         </div>

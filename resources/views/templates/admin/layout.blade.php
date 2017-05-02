@@ -84,6 +84,12 @@
                                             
                                         </ul>
                                     </li>
+                                                 <li><a><i class="fa fa-edit"></i> Actualités <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">     
+                                            <li><a href="{{route('topics.index')}}">liste</a></li>
+                                            
+                                        </ul>
+                                    </li>
                                      <li><a><i class="fa fa-edit"></i> Contacts <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{route('contacts.index')}}">liste</a></li>

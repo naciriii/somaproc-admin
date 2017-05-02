@@ -58,14 +58,17 @@ class ProductsController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'photo'  => 'required|image|max:3000',
-            'price'=>'required|numeric',
+            'min_price'=>'required|numeric',
+            'max_price'=>'required|numeric',
             'category_id'=>'required',
             'language_id'=>'required'
         ]);
         $product=new Product;
         $product->name=$request->name;
         $product->photo=$this->upload($request);
-        $product->price=$request->price;
+        $product->min_price=$request->min_price;
+        $product->max_price=$request->max_price;
+
         $product->category_id=$request->category_id;
         $product->language_id=$request->language_id;
 
@@ -147,7 +150,8 @@ class ProductsController extends Controller
                $this->validate($request, [
             'name'=>'required',
             'photo'  => 'image|max:3000',
-            'price'=>'required|numeric',
+            'min_price'=>'required|numeric',
+            'max_price'=>'required|numeric',
             'category_id'=>'required',
             'language_id'=>'required'
 
@@ -160,7 +164,8 @@ class ProductsController extends Controller
             $product = Product::findOrFail($id);
 
             $product->name = $request->input('name');
-            $product->price = $request->input('price');
+            $product->min_price = $request->input('min_price');
+            $product->max_price = $request->input('max_price');
             $product->category_id = $request->input('category_id');
             $product->language_id = $request->input('language_id');
             if($request->hasFile('photo')){
