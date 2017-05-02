@@ -31,9 +31,16 @@ Route::get('/', 'HomeController@index');
 */
 	Route::resource('products','ProductsController');
 
+	/*
+|--------------------------------------------------------------------------
+| ROPICS ROUTES
+|--------------------------------------------------------------------------
+*/
+	Route::resource('topics','TopicsController');
+
 /*
 |--------------------------------------------------------------------------
-| CONTANCTS ROUTES
+| CONTACTS ROUTES
 |--------------------------------------------------------------------------
 */
 	Route::resource('contacts', 'ContactsController');
