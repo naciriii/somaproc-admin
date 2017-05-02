@@ -95,7 +95,7 @@ class ContactsController extends Controller
             $contact = Contact::findOrFail($id);
 
             $params = [
-                'title' => 'Répondre',
+                'title' => 'Message',
              
                 'contact' => $contact
                 

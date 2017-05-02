@@ -17,6 +17,7 @@
                          <tr>
                           <th>Nom & Prénom</th>
                           <th>Email</th>
+                          <th>Message</th>
                           <th>Date</th>
                           <th>Action</th>
                          </tr>
@@ -25,6 +26,7 @@
                          <tr>
                           <th>Nom & Prénom</th>
                           <th>Email</th>
+                          <th>Message</th>
                           <th>Date</th>
                           <th>Action</th>
                          </tr>
@@ -35,7 +37,8 @@
                         <tr>
                          <td>{{$contact->first_name}} {{$contact->last_name}}</td>
                          <td>{{$contact->email}}</td>
-                         <td>{{$contact->created_at}}</td>
+                         <td>{{str_limit($contact->message, 7)}}</td>
+                         <td>{{$contact->created_at->format('d M Y')}}</td>
                          <td>
                              <a href="{{route('contacts.edit',['id'=>$contact->id])}}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="info"></i> 
                               <a href="{{ route('contacts.show', ['id' => $contact->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> </a>
