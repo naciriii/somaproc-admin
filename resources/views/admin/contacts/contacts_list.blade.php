@@ -14,39 +14,35 @@
                 <div class="x_content">
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                         <thead>
-                            <tr>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Email</th>
-                                <th>Message </th>
-                                <th>Date</th>   
-                                <th>Action</th>
-                            </tr>
+                         <tr>
+                          <th>Nom & Prénom</th>
+                          <th>Email</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                         </tr>
                         </thead>
                         <tfoot>
-                            <tr>
-                               <th>First name</th>
-                               <th>Last name</th>
-                               <th>Email</th>
-                               <th>Message </th>
-                               <th>Date</th>   
-                               <th>Action</th>
-                           </tr>
+                         <tr>
+                          <th>Nom & Prénom</th>
+                          <th>Email</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                         </tr>
                        </tfoot>
                        <tbody>
                         @if(count($contacts))
                         @foreach($contacts as $contact)
                         <tr>
-                         <td>{{$contact->first_name}}</td>
-                         <td>{{$contact->last_name}}</td>
+                         <td>{{$contact->first_name}} {{$contact->last_name}}</td>
                          <td>{{$contact->email}}</td>
-                         <td>{{$contact->message}}</td>
                          <td>{{$contact->created_at}}</td>
-                         <td><a href="{{url('/contacts/{id}')}}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> </a></td>
+                         <td>
+                             <a href="{{route('contacts.edit',['id'=>$contact->id])}}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="info"></i> 
+                              <a href="{{ route('contacts.show', ['id' => $contact->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> </a>
+                         </td>
                         </tr>
                         @endforeach
                         @endif
-
                  </tbody>
              </table>
          </div>
@@ -54,5 +50,4 @@
  </div>
 </div>
 </div>
-
 @stop

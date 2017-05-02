@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Contact;
 
-class ContactController extends Controller
+class ContactsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+      
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +27,7 @@ class ContactController extends Controller
             'title'=>'Contact list',
             'contacts'=>$contacts
         ];
-        return view('admin.contacts.contact_list')->with($params);
+        return view('admin.contacts.contacts_list')->with($params);
     }
 
     /**
@@ -56,6 +60,24 @@ class ContactController extends Controller
     public function show($id)
     {
         //
+          try
+        {
+           $contact = Contact::findOrFail($id);
+
+            $params = [
+                'title' => 'Supprimer Contact',
+                'contact' => $contact,
+            ];
+
+            return view('admin.contacts.contacts_delete')->with($params);
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 
     /**
@@ -67,6 +89,27 @@ class ContactController extends Controller
     public function edit($id)
     {
         //
+         try
+        {
+         
+            $contact = Contact::findOrFail($id);
+
+            $params = [
+                'title' => 'Répondre',
+             
+                'contact' => $contact
+                
+            ];
+
+            return view('admin.contacts.contacts_edit')->with($params);
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 
     /**
@@ -90,5 +133,20 @@ class ContactController extends Controller
     public function destroy($id)
     {
         //
+         try
+        {
+            $contact = Contact::findOrFail($id);
+         
+            $contact->delete();
+
+            return redirect()->route('contacts.index')->with('success', "Contact a été supprimé.");
+        }
+        catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 }

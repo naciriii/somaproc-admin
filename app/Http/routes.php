@@ -36,4 +36,4 @@ Route::get('/', 'HomeController@index');
 | CONTANCTS ROUTES
 |--------------------------------------------------------------------------
 */
-	Route::resource('contacts', 'ContactController');
+	Route::resource('contacts', 'ContactsController');
