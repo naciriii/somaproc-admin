@@ -11,7 +11,10 @@ class ContactsController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
+<<<<<<< HEAD:app/Http/Controllers/ContactsController.php
       
+=======
+>>>>>>> 726a2f04df2ba5c8f34e6dceabf81297d19c21c1:app/Http/Controllers/ContactController.php
     }
     /**
      * Display a listing of the resource.

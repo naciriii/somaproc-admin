@@ -8,16 +8,16 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Confirm Delete Record <a href="{{route('console_users.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
+                    <h2>Confirmer suppression admin <a href="{{route('admins.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Retour </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <p>Are you sure you want to delete <strong>{{$console_user->name}}</strong></p>
+                    <p>Vous êtes sur de supprimer l'admin <strong>{{$admin->name}}</strong></p>
 
-                    <form method="POST" action="{{ route('console_users.destroy', ['id' => $console_user->id]) }}">
+                    <form method="POST" action="{{ route('admins.destroy', ['id' => $admin->id]) }}">
                         <input type="hidden" name="_token" value="{{ Session::token() }}">
                         <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-danger">Yes I'm sure. Delete</button>
+                        <button type="submit" class="btn btn-danger">Oui Je suis sur</button>
                     </form>
                 </div>
             </div>
