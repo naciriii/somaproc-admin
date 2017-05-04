@@ -78,6 +78,12 @@
                                     </li>
 
                                 @endif
+                                          <li><a><i class="fa fa-edit"></i> Clients <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">     
+                                            <li><a href="{{route('clients.index')}}">liste</a></li>
+                                            
+                                        </ul>
+                                    </li>
                                              <li><a><i class="fa fa-edit"></i> Produits <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">     
                                             <li><a href="{{route('products.index')}}">liste</a></li>

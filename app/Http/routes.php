@@ -24,6 +24,13 @@ Route::get('/', 'HomeController@index');
 */
 	Route::resource('admins','AdminsController');
 
+	/*
+|--------------------------------------------------------------------------
+| CLIENTS ROUTES
+|--------------------------------------------------------------------------
+*/
+	Route::resource('clients','ClientsController');
+
 /*
 |--------------------------------------------------------------------------
 | PRODUCTS ROUTES
@@ -33,7 +40,7 @@ Route::get('/', 'HomeController@index');
 
 	/*
 |--------------------------------------------------------------------------
-| ROPICS ROUTES
+| TOPICS ROUTES
 |--------------------------------------------------------------------------
 */
 	Route::resource('topics','TopicsController');
