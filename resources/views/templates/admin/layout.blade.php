@@ -53,8 +53,8 @@
                             <img src="{{asset('admin/images/img.jpg')}}" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>Bienvenu,</span>
-                          <li> <h3>{{Auth::user()->name}}</h3></li>
+                            <span>Bienvenu</span>
+                          <h2>{{ Auth::user()->name }}</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
