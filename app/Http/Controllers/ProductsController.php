@@ -22,6 +22,8 @@ class ProductsController extends Controller
     public function index()
     {
         //
+
+
         $products=Product::all();
             $params=[
         'title'=>'Liste produits',
@@ -65,7 +67,7 @@ class ProductsController extends Controller
         ]);
         $product=new Product;
         $product->name=$request->name;
-        $product->photo=$this->upload($request);
+        $product->photo=asset('/').$this->upload($request);
         $product->min_price=$request->min_price;
         $product->max_price=$request->max_price;
 
@@ -169,7 +171,7 @@ class ProductsController extends Controller
             $product->category_id = $request->input('category_id');
             $product->language_id = $request->input('language_id');
             if($request->hasFile('photo')){
-                $request->photo=$this->upload($request);
+                $request->photo=asset('/').$this->upload($request);
             }
         
                

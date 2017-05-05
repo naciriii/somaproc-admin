@@ -67,9 +67,9 @@ class TopicsController extends Controller
         ]);
         $topic=new Topic;
         $topic->title=$request->title;
-        $topic->photo1=$this->upload($request,'photo1');
-        $topic->photo2=$this->upload($request,'photo2');
-        $topic->photo3=$this->upload($request,'photo3');
+        $topic->photo1=asset('/').$this->upload($request,'photo1');
+        $topic->photo2=asset('/').$this->upload($request,'photo2');
+        $topic->photo3=asset('/').$this->upload($request,'photo3');
 
         $topic->description=$request->description;
   
@@ -172,13 +172,13 @@ class TopicsController extends Controller
             $topic->description = $request->input('description');
             $topic->language_id = $request->input('language_id');
             if($request->hasFile('photo')){
-                $request->photo1=$this->upload($request,'photo1');
+                $request->photo1=asset('/').$this->upload($request,'photo1');
             }
             if($request->hasFile('photo2')){
-                $request->photo2=$this->upload($request,'photo2');
+                $request->photo2=asset('/').$this->upload($request,'photo2');
             }
             if($request->hasFile('photo3')){
-                $request->photo3=$this->upload($request,'photo3');
+                $request->photo3=asset('/').$this->upload($request,'photo3');
             }
         
                
