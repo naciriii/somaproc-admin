@@ -29,7 +29,9 @@
                 </div>
                 <div class="message-text">
                   <p>
+                  <strong>Subject  : </strong>{{$contact->subject}}<br>
                    <strong>Message : </strong>{{$contact->message}}
+                  
                   </p>
                  
                  

@@ -1,8 +1,9 @@
 <?php
 
 return [
-1=>'cat1',
-2=>'cat2',
-3=>'cat3',
-4=>'cat4',
+1=>'viande rouge',
+2=>'viande blanche',
+3=>'poisson',
+4=>'légume',
+5=>'fruits',
 ];
