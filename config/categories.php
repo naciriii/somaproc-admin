@@ -1,9 +1,9 @@
 <?php
 
 return [
-1=>'viande rouge',
-2=>'viande blanche',
-3=>'poisson',
-4=>'légume',
+1=>'viandes rouge',
+2=>'viandes blanche',
+3=>'poissons',
+4=>'légumes',
 5=>'fruits',
 ];
