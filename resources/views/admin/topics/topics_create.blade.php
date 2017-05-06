@@ -68,7 +68,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control" name="language_id">
                                     @foreach(config('languages') as $key=>$value)
+                                         @if(is_numeric($key))
                                     <option value="{{$key}}">{{$value}}</option>
+                                    @endif
                                     @endforeach
                                     
                                 </select>
