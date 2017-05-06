@@ -102,14 +102,12 @@
                                             
                                         </ul>
                                     </li>
-                              
-                                 
-                                     
-                             
-                                  
-
-
-                        
+                                     <li><a><i class="fa fa-picture-o"></i> Galleries <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{route('galleries.index')}}">liste</a></li>
+                                            
+                                        </ul>
+                                    </li>
                             </ul>
                              
                         </div>

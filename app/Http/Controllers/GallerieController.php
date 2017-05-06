@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Product;
+use App\Gallerie;
 use File;
 
-class ProductsController extends Controller
+class GallerieController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
-      
+
     }
     /**
      * Display a listing of the resource.
@@ -22,14 +22,13 @@ class ProductsController extends Controller
     public function index()
     {
         //
+         $galleries= Gallerie::get();
 
-
-        $products=Product::all();
-            $params=[
-        'title'=>'Liste produits',
-        "products"=>$products];
-
-        return view('admin.products.products_list')->with($params);
+        $params=[
+            'title'=>'Galleries list',
+            'galleries'=>$galleries
+        ];
+        return view('admin.galleries.galleries_list')->with($params);
     }
 
     /**
@@ -40,13 +39,12 @@ class ProductsController extends Controller
     public function create()
     {
         //
-         $params=['title'=>'Creation produit',
+        $params=['title'=>'Creation gallerie',
 
         ];
 
-        return view('admin.products.products_create')->with($params);
+        return view('admin.galleries.galleries_create')->with($params);
     }
-    
 
     /**
      * Store a newly created resource in storage.
@@ -58,24 +56,15 @@ class ProductsController extends Controller
     {
         //
         $this->validate($request,[
-            'name'=>'required',
+            'description'=>'required',
             'photo'  => 'required|image|max:3000',
-            'min_price'=>'required|numeric',
-            'max_price'=>'required|numeric',
-            'category_id'=>'required',
-            'language_id'=>'required'
         ]);
-        $product=new Product;
-        $product->name=$request->name;
-        $product->photo=asset('/').$this->upload($request);
-        $product->min_price=$request->min_price;
-        $product->max_price=$request->max_price;
-
-        $product->category_id=$request->category_id;
-        $product->language_id=$request->language_id;
-
-        $product->save();
-          return redirect()->route('products.index')->with('success', "Produit  '<strong>$product->name</strong>' a été crée.");
+        $gallerie=new Gallerie;
+        $gallerie->description=$request->description;
+        $gallerie->photo=asset('/').$this->upload($request);
+        
+        $gallerie->save();
+        return redirect()->route('galleries.index')->with('success', "gallerie a été crée.");
     }
 
     /**
@@ -84,18 +73,19 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
- public function show($id)
+    public function show($id)
     {
-         try
+        //
+        try
         {
-            $product = Product::findOrFail($id);
+            $gallerie = Gallerie::findOrFail($id);
 
             $params = [
-                'title' => 'Supprimer Produit',
-                'product' => $product,
+                'title' => 'Supprimer Gallerie',
+                'gallerie' => $gallerie,
             ];
 
-            return view('admin.products.products_delete')->with($params);
+            return view('admin.galleries.galleries_delete')->with($params);
         }
         catch (ModelNotFoundException $ex) 
         {
@@ -114,19 +104,20 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        try
+        //
+         try
         {
          
-            $product = Product::findOrFail($id);
+            $gallerie = Gallerie::findOrFail($id);
 
             $params = [
-                'title' => 'Modifier produit',
+                'title' => 'Modifier Gallerie',
              
-                'product' => $product
+                'gallerie' => $gallerie
                 
             ];
 
-            return view('admin.products.products_edit')->with($params);
+            return view('admin.galleries.galleries_edit')->with($params);
         }
         catch (ModelNotFoundException $ex) 
         {
@@ -147,31 +138,24 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         //
-         try
+        try
         {
                $this->validate($request, [
-            'name'=>'required',
+            'description'=>'required',
             'photo'  => 'image|max:3000',
-            'min_price'=>'required|numeric',
-            'max_price'=>'required|numeric',
-            'category_id'=>'required',
-            'language_id'=>'required'
         ]);
 
-            $product = Product::findOrFail($id);
+            $gallerie = Gallerie::findOrFail($id);
 
-            $product->name = $request->input('name');
-            $product->min_price = $request->input('min_price');
-            $product->max_price = $request->input('max_price');
-            $product->category_id = $request->input('category_id');
-            $product->language_id = $request->input('language_id');
+            $gallerie->description = $request->input('description');
+
             if($request->hasFile('photo')){
-                $product->photo=asset('/').$this->upload($request);
+                $gallerie->photo=asset('/').$this->upload($request);
             }
         
-            $product->save();
+            $gallerie->save();
 
-            return redirect()->route('products.index')->with('success', " Produit <strong>$product->name</strong> a été mis à jour.");
+            return redirect()->route('galleries.index')->with('success', " Galleries a été mis à jour.");
         }
         catch (ModelNotFoundException $ex) 
         {
@@ -191,14 +175,14 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
-        try
+         try
         {
-            $product = Product::find($id);
-            File::delete($product->photo);
+            $gallerie = Gallerie::find($id);
+            File::delete($gallerie->photo);
 
-            $product->delete();
+            $gallerie->delete();
 
-            return redirect()->route('products.index')->with('success', "Produit <strong>$product->name</strong> a été supprimé.");
+            return redirect()->route('galleries.index')->with('success', "gallerie a été supprimé.");
         }
         catch (ModelNotFoundException $ex) 
         {
@@ -208,25 +192,16 @@ class ProductsController extends Controller
             }
         }
     }
-     public function upload(Request $request) {
+    public function upload(Request $request) {
             if($request->hasFile('photo')) {
 
                 $file = $request->file('photo');
 
                 $filename = time() . '-' . $file->getClientOriginalName();
-                $despath=base_path().'/public/produits/';
+                $despath=base_path().'/public/gallerie/';
                 $file->move($despath,$filename);
-
-           
-             
-                $filePath = 'produits/'.$filename;
-               
-
-
-            
-
+                $filePath = 'gallerie/'.$filename;
                 $path= $filePath;
-
               return $path;
             }
             else
